@@ -71,12 +71,12 @@ char	*ft_get_line(char *save)
 	{
 		str[j] = save[j];
 		j++;
-	}1
+	}
 	if (save[j] == '\n')
 		str[j] = save[j];
 	str[++j] = '\0';
 	return (str);
-}*/
+} */
 
 char	*ft_read(int fd, char *save)
 {
@@ -93,7 +93,8 @@ char	*ft_read(int fd, char *save)
 		if (read_index == -1)
 		{
 			free(buff);
-			return (NULL);
+			save = NULL;
+			return (save);
 		}
 		buff[read_index] = '\0';
 		save = ft_gnl_strjoin(save, buff);
@@ -110,7 +111,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)	
 		return (0);
 	save = ft_read(fd, save);
-	if (!save)
+	if (save == NULL)
 		return (NULL);
 	line = ft_get_line(save);
 	save = ft_gnl_extra(save);
